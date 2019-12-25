@@ -1,0 +1,27 @@
+using namespace std;
+bool valid_braces(string s) 
+{
+	if(s.length()%2!=0)
+return false;
+	char stack[10000];int top=-1;
+for(int i=0;i<s.length();i++)
+{
+	if(s[i]=='('|| s[i]=='['||s[i]=='{')
+		stack[++top]=s[i];
+	else{
+		if(s[i]=='}'&&stack[top]=='{')
+		top--;
+		else if(s[i]==')'&&stack[top]=='(')
+		top--;		
+		else if(s[i]==']'&&stack[top]=='[')
+		top--;
+		else 
+		return false;
+	}
+}
+if(top!=-1)
+return false;
+
+return true;
+
+}
