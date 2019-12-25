@@ -1,0 +1,42 @@
+#include <string>
+#include <vector>
+#include<sstream>
+using namespace std;
+class SumOfDivided
+{
+public:
+  static string sumOfDivided(vector<int> &lst)
+{
+	stringstream s;
+	int max=0,min=0;
+	for(int i=0;i<lst.size();i++)
+	if(lst[i]<0)min+=-lst[i];
+  else max+=lst[i];
+  
+	for(int i=2;i<=(max>min?max:min);i++)
+	{
+		bool b=true;
+		int sum=0;
+	      if (i <= 1) 
+	        b=false; 
+        else if (i <= 3) 
+            b=true; 
+        else if (i%2 == 0 || i%3 == 0) 
+            b=false; 
+  	    else {
+  	        for (int j=5; j*j<=i; j=j+6) 
+            if ((i%j == 0) || (i%(j+2) == 0)) 
+                b= false;}
+		if(b==true){
+		for(int j=0;j<lst.size();j++)
+		{
+			if(lst[j]%i==0)
+			{sum+=lst[j];b=false;}
+		}
+		if(b==false)
+		s<<"("<<i<<" "<<sum<<")";
+	}
+  }
+	return s.str();
+}
+};
