@@ -1,0 +1,17 @@
+#include <vector>
+using namespace std;
+typedef unsigned long long ull;
+class ProdFib
+{
+public:
+  static std::vector<ull> productFib(ull prod){
+  ull f=0,s=1,t=f+s;
+	  while(f*s<prod)
+  		{		
+  			f=s; s=t; t=s+f;
+		  }
+		if(f*s==prod)
+		return {f,s,true};
+		else return {f,s,false};
+  }
+};
