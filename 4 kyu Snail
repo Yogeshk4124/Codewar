@@ -1,0 +1,51 @@
+#include<iostream>
+#include <vector>
+using namespace std;
+std::vector<int> snail(std::vector<std::vector<int> > v) {
+  vector<int>r;
+  if(v.size()==0)
+	return r;
+	else if(v.size()==1)
+	return {v.front()};
+  int cas=0,i=0,j=0,si=0,sj=0,li=v.size()-1,lj=v.size()-1;
+  while(true){
+  	r.push_back(v[i][j]);
+		switch(cas){
+			case 0:
+					j++;
+					if(j>lj){
+					j--;
+					cas=1;i++;
+					si++;
+					}
+					break;
+			case 1:
+					i++;
+					if(i>li){
+					i--;
+					cas=2;j--;
+					lj--;
+					}
+					break;
+			case 2:
+					j--;
+					if(j==sj){
+					cas=3;
+					li--;
+					}
+					break;
+			case 3:
+					i--;
+					if(i==si){
+					cas=0;
+					sj++;
+					}
+					break;			
+		}
+		if(i==(v.size()-1)/2&&j==(v.size()-1)/2&&v.size()-1%2==0)
+		{r.push_back(v[i][j]);break;}
+		if(i==(v.size())/2&&j==(v.size()-1)/2&&v.size()-1%2!=0)
+		{r.push_back(v[i][j]);break;}
+	}
+	 return r;
+}
